@@ -4,8 +4,6 @@ export type PlatformStatisticsData = {
   totalListings: number;
   successfulMatches: number;
   pendingConnections: number;
-  activeListings: number;
-  totalInterests: number;
   isUsingSampleData?: boolean;
 };
 
@@ -14,8 +12,6 @@ const SAMPLE_PLATFORM_STATS: PlatformStatisticsData = {
   totalListings: 5,
   successfulMatches: 2,
   pendingConnections: 2,
-  activeListings: 3,
-  totalInterests: 5,
   isUsingSampleData: true
 };
 
@@ -218,7 +214,6 @@ export const getTotalInterests = async (): Promise<number> => {
 
 /**
  * Get all platform statistics data
- * Active Listings = Total Listings - Successful Matches
  */
 export const getAllPlatformStatistics = async (): Promise<PlatformStatisticsData> => {
   try {
@@ -234,24 +229,17 @@ export const getAllPlatformStatistics = async (): Promise<PlatformStatisticsData
     const [
       totalListings,
       successfulMatches,
-      pendingConnections,
-      totalInterests
+      pendingConnections
     ] = await Promise.all([
       getTotalListings(),
       getSuccessfulMatches(),
-      getPendingConnections(),
-      getTotalInterests()
+      getPendingConnections()
     ]);
-    
-    // Calculate Active Listings = Total Listings - Successful Matches
-    const activeListings = totalListings - successfulMatches;
     
     return {
       totalListings,
       successfulMatches,
       pendingConnections,
-      activeListings: Math.max(0, activeListings), // Ensure non-negative
-      totalInterests,
       isUsingSampleData: false
     };
   } catch (error) {

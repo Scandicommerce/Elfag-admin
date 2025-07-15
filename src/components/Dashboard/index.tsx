@@ -23,9 +23,7 @@ const AdminDashboard = () => {
   const [platformStats, setPlatformStats] = useState<PlatformStatisticsData>({
     totalListings: 0,
     successfulMatches: 0,
-    pendingConnections: 0,
-    activeListings: 0,
-    totalInterests: 0
+    pendingConnections: 0
   });
   const [recentActivity, setRecentActivity] = useState<RecentActivityData[]>([]);
   const [categoryPerformance, setCategoryPerformance] = useState<CategoryPerformanceData[]>([]);
@@ -45,10 +43,7 @@ const AdminDashboard = () => {
         // Set platform statistics data
         setPlatformStats(platformStatsData);
         
-        // Set recent activity data
         setRecentActivity(activityData);
-        
-        // Set category performance data
         setCategoryPerformance(categoryData);
         
         // Animate the stats loading
@@ -56,9 +51,7 @@ const AdminDashboard = () => {
           const increment = {
             totalListings: platformStatsData.totalListings / 30,
             successfulMatches: platformStatsData.successfulMatches / 30,
-            pendingConnections: platformStatsData.pendingConnections / 30,
-            activeListings: platformStatsData.activeListings / 30,
-            totalInterests: platformStatsData.totalInterests / 30
+            pendingConnections: platformStatsData.pendingConnections / 30
           };
 
           let currentStats = { ...platformStats };
@@ -160,14 +153,6 @@ const AdminDashboard = () => {
           <div className="stat-card">
             <div className="stat-number">{platformStats.pendingConnections}</div>
             <div className="stat-label">Pending Connections</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-number">{platformStats.activeListings}</div>
-            <div className="stat-label">Active Listings</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-number">{platformStats.totalInterests}</div>
-            <div className="stat-label">Total Interests</div>
           </div>
         </div>
       </div>

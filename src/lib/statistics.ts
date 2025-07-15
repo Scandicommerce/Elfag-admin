@@ -69,6 +69,8 @@ export const getCategoryPerformance = async (): Promise<CategoryPerformanceData[
       
       const successRate = totalListings > 0 ? Math.round((completed / totalListings) * 100) : 0;
       
+
+      
       performance.push({
         name: categoryName,
         totalListings,
@@ -78,6 +80,7 @@ export const getCategoryPerformance = async (): Promise<CategoryPerformanceData[
       });
     }
     
+    console.log('Final performance data (ALL USERS):', performance);
     return performance;
   } catch (error) {
     console.error('Error in getCategoryPerformance:', error);
