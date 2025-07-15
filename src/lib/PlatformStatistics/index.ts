@@ -43,7 +43,7 @@ export const checkTableNames = async () => {
   
   for (const tableName of possibleNames) {
     try {
-      const { count, error } = await supabase
+      const { error } = await supabase
         .from(tableName)
         .select('*', { count: 'exact', head: true });
       
