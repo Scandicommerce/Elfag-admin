@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
 import { getRecentActivity, getCategoryPerformance, type RecentActivityData, type CategoryPerformanceData } from '../../lib/statistics';
 import { getAllPlatformStatistics, type PlatformStatisticsData } from '../../lib/PlatformStatistics';
 import './index.css';
 
 const AdminDashboard = () => {
-  const { user, signOut } = useAuth();
   
   // Helper function to format date as YYYY/MM/DD HH:MM:SS
   const formatDateTime = (dateString: string): string => {
@@ -17,7 +15,6 @@ const AdminDashboard = () => {
     const day = String(date.getDate()).padStart(2, '0');
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
     
     // return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     return `${year}-${month}-${day} ${hours}:${minutes}`;
@@ -111,13 +108,6 @@ const AdminDashboard = () => {
     );
   };
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
-  };
 
   return (
     <div className="admin-container">
