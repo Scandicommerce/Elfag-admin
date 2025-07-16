@@ -7,7 +7,7 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ onSuccess }) => {
   const { signIn } = useAuth()
-  const [email, setEmail] = useState('rusuland9@gmail.com')
+  const [email, setEmail] = useState('araayuki65@gmail.com')
   const [password, setPassword] = useState('123456789')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
